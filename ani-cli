@@ -213,7 +213,7 @@ hianime_search() {
         die "Blocked by cloudflare."
     fi
     # the top 10 sidebar repeats the result markup, cut it off before flattening the page
-    print_page"%s" "$_page" | sed '/id="main-sidebar"/,$d' | tr '\n' ' ' | sed 's|<div class="film-detail">|\n<div class="film-detail">|g' |
+    print_page "$_page" | sed '/id="main-sidebar"/,$d' | tr '\n' ' ' | sed 's|<div class="film-detail">|\n<div class="film-detail">|g' |
         sed -nE 's|.*<h3 class="film-name">[[:space:]]*<a href="[^"]*/([^"/]*)"[[:space:]]*title="([^"]*)".*|\1\t\2|p' |
         sed -e "s|&#039;|'|g" -e 's|&quot;|"|g' -e "s|&amp;|\&|g"
 }
