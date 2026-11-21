@@ -259,7 +259,7 @@ select_quality() {
         worst) _result=$(printf "%s" "$links" | grep -E '^[0-9]{3,4}' | tail -n 1) ;;
         *) _result=$(printf "%s" "$links" | grep -m 1 "$1") ;;
     esac
-    [ -z "$_result" ] && printf "\33[2K\r\033[1;33m%s\033[0m\n" "$1 not found, defaulting to best" >&2 && _result=$(printf "%s" "$links" | head -n 1)
+    [ -z "$_result" ] && printf "\33[2K\r\033[1;33m%s\033[0m\n" "$1 not found, defaulting to worst" >&2 && _result=$(printf "%s" "$links" | grep -E '^[0-9]{3,4}' | tail -n 1)
 
     video_link=$(printf "%s" "$_result" | cut -d ">" -f 2)
 }
